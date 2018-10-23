@@ -18,6 +18,7 @@
     <exec executable="${root}/scripts/extract-module-classes.rb"/>
     <mkdir dir="${classes}"/>
     <mkdir dir="${libsempre}"/>
+    <mkdir dir="${lib}"/>
   </target>
 
   <!-- Compile -->
