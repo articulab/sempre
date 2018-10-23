@@ -23,8 +23,8 @@
   
   <!-- Pull Dependencies -->
   <target name="pull-dependencies">
-    <exec executable="/usr/bin/ruby">
-       <arg line="pull-dependencies core"/>
+    <exec executable="${root}/pull-dependencies">
+       <arg value="core"/>
     </exec>
   </target>
 
@@ -43,7 +43,10 @@
       <include name="edu/stanford/nlp/sempre/*.java"/>
       <include name="edu/stanford/nlp/sempre/test/"/>
     </javac>
-    <jar destfile="${libsempre}/sempre-core.jar" basedir="${classes}" includes="edu/**"/>
+    <jar destfile="${libsempre}/sempre-core.jar" basedir="${classes}" includes="edu/**"> 
+       <fileset dir="${classes}" includes ="**/*.class" />	
+       <zipgroupfileset dir="${lib}" includes="**/*.jar" />
+    </jar>
   </target>
 
   <!-- Compile cache -->
@@ -57,7 +60,7 @@
   </target>
 
   <!-- Compile corenlp -->
-  <target name="corenlp" depends="init,core,cache">
+  <target name="corenlp" depends="init,cache">
     <echo message="Compiling ${ant.project.name}: corenlp"/>
     <mkdir dir="${classes}/corenlp"/>
     <javac srcdir="${src}" destdir="${classes}/corenlp" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
