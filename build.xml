@@ -23,8 +23,8 @@
   
   <!-- Pull Dependencies -->
   <target name="pull-dependencies">
-    <exec executable="${root}/pull-dependencies">
-       <arg value="core"/>
+    <exec executable="/usr/bin/ruby">
+       <arg line="pull-dependencies core"/>
     </exec>
   </target>
 
