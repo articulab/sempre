@@ -20,6 +20,13 @@
     <mkdir dir="${libsempre}"/>
     <mkdir dir="${lib}"/>
   </target>
+  
+  <!-- Pull Dependencies -->
+  <target name="pull-dependencies">
+    <exec executable="ruby">
+       <arg line="${root}/pull-dependencies core"/>
+    </exec>
+  </target>
 
   <!-- Compile -->
   <target name="compile" depends="init">
@@ -29,7 +36,7 @@
   <target name="compile.released" depends="init,core,cache,corenlp,freebase,tables,cprune,overnight"/>
 
   <!-- Compile core -->
-  <target name="core" depends="init">
+  <target name="core" depends="init,pull-dependencies">
     <echo message="Compiling ${ant.project.name}: core"/>
     <mkdir dir="${classes}"/>
     <javac srcdir="${src}" destdir="${classes}" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
