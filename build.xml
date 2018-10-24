@@ -73,8 +73,8 @@
   <!-- Compile corenlp -->
   <target name="corenlp" depends="init,cache">
     <echo message="Compiling ${ant.project.name}: corenlp"/>
-    <mkdir dir="${classes}/corenlp"/>
-    <javac srcdir="${src}" destdir="${classes}/corenlp" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
+    <mkdir dir="${classes}"/>
+    <javac srcdir="${src}" destdir="${classes}" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
       <include name="edu/stanford/nlp/sempre/corenlp/"/>
     </javac>
     <jar destfile="${libsempre}/sempre-corenlp.jar" basedir="${classes}/corenlp"/>
