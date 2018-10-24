@@ -77,7 +77,7 @@
     <javac srcdir="${src}" destdir="${classes}" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
       <include name="edu/stanford/nlp/sempre/corenlp/"/>
     </javac>
-    <jar destfile="${libsempre}/sempre-corenlp.jar" basedir="${classes}/corenlp"/>
+    <jar destfile="${libsempre}/sempre-corenlp.jar" basedir="${classes}"/>
   </target>
 
   <!-- Compile freebase -->
