@@ -6,13 +6,18 @@
   <property name="root" value="."/>
   <property name="src" location="${root}/src/"/>
   <property name="classes" location="${root}/classes"/>
+  <property name="fig.classes" location="${root}/fig/classes"/>
   <property name="lib" location="${root}/lib"/>
   <property name="libsempre" location="${root}/libsempre"/>
+  <property name="fig" location="${root}/fig"/>
   <path id="lib.path">
     <fileset dir="${libsempre}">
        <include name="**/*.jar"/>
     </fileset> 
     <fileset dir="${lib}">
+       <include name="**/*.jar"/>
+    </fileset>
+    <fileset dir="${fig}">
        <include name="**/*.jar"/>
     </fileset>
   </path>
@@ -26,11 +31,11 @@
   </target>
   
   <!-- Pull Dependencies -->
-  <target name="pull-dependencies">
+  <!-- <target name="pull-dependencies">
     <exec executable="${root}/pull-dependencies">
        <arg value="core"/>
     </exec>
-  </target>
+  </target> -->
 
   <!-- Compile -->
   <target name="compile" depends="init">
@@ -40,7 +45,7 @@
   <target name="compile.released" depends="init,core,cache,corenlp,freebase,tables,cprune,overnight"/>
 
   <!-- Compile core -->
-  <target name="core" depends="init,pull-dependencies">
+  <target name="core" depends="init">
     <echo message="Compiling ${ant.project.name}: core"/>
     <mkdir dir="${classes}"/>
     <javac srcdir="${src}" destdir="${classes}" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
@@ -50,6 +55,7 @@
     </javac>
     <jar destfile="${libsempre}/sempre-core.jar" basedir="${classes}" includes="edu/**"> 
        <fileset dir="${classes}" includes ="**/*.class" />	
+       <fileset dir="${fig.classes}" includes ="**/*.class" />
        <zipgroupfileset dir="${lib}" includes="**/*.jar" />
     </jar>
   </target>
