@@ -42,7 +42,7 @@
     <antcall target="compile.released"/>
   </target>
 
-  <target name="compile.released" depends="init,core,cache,corenlp,freebase,tables,cprune,overnight"/>
+  <target name="compile.released" depends="init,core,cache"/>
 
   <!-- Compile core -->
   <target name="core" depends="init">
